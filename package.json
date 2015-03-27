@@ -1,7 +1,7 @@
 {
   "name": "adv-training-helpers",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "Training helpers for advanced ember training",
   "directories": {
     "doc": "doc",
     "test": "tests"
