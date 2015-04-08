@@ -15,8 +15,9 @@ module.exports = {
   },
 
   afterInstall: function(options) {
-    childProcess.execSync("git remote add training https://github.com/thefrontside/adv-ember-training.git");
+    childProcess.execSync("git remote add training https://github.com/thefrontside/adv-ember-training-v2.git");
     childProcess.execSync("git fetch training");
+    childProcess.execSync("git fetch --tags");
   },
 
   afterUninstall: function(options) {
