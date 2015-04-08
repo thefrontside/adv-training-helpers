@@ -18,6 +18,7 @@ module.exports = {
     childProcess.execSync("git remote add training https://github.com/thefrontside/adv-ember-training-v2.git");
     childProcess.execSync("git fetch training");
     childProcess.execSync("git fetch training --tags");
+    childProcess.execSync("npm install --save-dev phantomjs");
   },
 
   afterUninstall: function(options) {
