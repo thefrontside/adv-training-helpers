@@ -13,7 +13,21 @@ module.exports = {
         works: "insideProject",
 
         run: function(commandOptions, rawArgs) {
-          childProcess.execSync("git reset --hard " + rawArgs[0]);
+          var tag = rawArgs[0];
+          if (tag == null) {
+            console.log('Usage: ');
+            console.log('ember training:ff STEP');
+            console.log('===== available steps =====');
+            console.log(childProcess.execSync('git tag | grep pt- ').toString());
+          } else {
+            try {
+              childProcess.execSync('git rev-parse ' + tag, {stdio: []});
+            } catch (e) {
+              console.log("unknown step '" + tag + "'");
+              return;
+            }
+            childProcess.execSync("git reset --hard " + tag);
+          }
         }
       }
     };
