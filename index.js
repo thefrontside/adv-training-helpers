@@ -27,6 +27,7 @@ module.exports = {
               return;
             }
             childProcess.execSync("git reset --hard " + tag);
+            console.log('fast forwarded to ' + tag);
           }
         }
       }
