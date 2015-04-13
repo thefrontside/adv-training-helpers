@@ -22,10 +22,10 @@ module.exports = {
 
   afterInstall: function(options) {
     return exec("git remote add training https://github.com/thefrontside/adv-ember-training-v2.git")
-    .then(asyncExec("git remote add training https://github.com/thefrontside/adv-ember-training-v2.git"))
-    .then(asyncExec("git fetch training"))
-    .then(asyncExec("git fetch training --tags"))
-    .then(asyncExec("npm install --save-dev phantomjs"));
+    .then(asyncCommand("git remote add training https://github.com/thefrontside/adv-ember-training-v2.git"))
+    .then(asyncCommand("git fetch training"))
+    .then(asyncCommand("git fetch training --tags"))
+    .then(asyncCommand("npm install --save-dev phantomjs"));
   },
 
   afterUninstall: function(options) {
