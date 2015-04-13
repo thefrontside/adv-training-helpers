@@ -2,6 +2,7 @@
 'use strict';
 
 var childProcess = require("child_process");
+var RSVP = require('rsvp');
 
 module.exports = {
   name: 'adv-training-helpers',
@@ -13,21 +14,25 @@ module.exports = {
         works: "insideProject",
 
         run: function(commandOptions, rawArgs) {
+          var exec = require('child-process-promise').exec;
           var tag = rawArgs[0];
           if (tag == null) {
             console.log('Usage: ');
             console.log('ember training:ff STEP');
             console.log('===== available steps =====');
-            console.log(childProcess.execSync('git tag | grep pt- ').toString());
+            return exec('git tag | grep pt- ').then(function(output) {
+              console.log(output.stdout.toString());
+            });
           } else {
-            try {
-              childProcess.execSync('git rev-parse ' + tag, {stdio: []});
-            } catch (e) {
+            return exec('git rev-parse ' + tag, {stdio: []})
+            .then(function(result) {
+              return exec("git reset --hard " + tag);
+            }).then(function(){
+              console.log('fast forwarded to ' + tag);
+            }).catch(function(e) {
               console.log("unknown step '" + tag + "'");
-              return;
-            }
-            childProcess.execSync("git reset --hard " + tag);
-            console.log('fast forwarded to ' + tag);
+              return RSVP.reject(new Error('unknown tag'));
+            });
           }
         }
       }

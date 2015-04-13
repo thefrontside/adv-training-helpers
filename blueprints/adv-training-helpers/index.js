@@ -1,4 +1,10 @@
-var childProcess = require("child_process");
+var exec = require('child-process-promise').exec;
+
+function asyncCommand(command) {
+  return function(){
+    return exec(command);
+  }
+}
 
 module.exports = {
   description: 'Initialize advanced training helper setup and teardown',
@@ -15,15 +21,15 @@ module.exports = {
   },
 
   afterInstall: function(options) {
-    childProcess.execSync("git remote add training https://github.com/thefrontside/adv-ember-training-v2.git");
-    childProcess.execSync("git fetch training");
-    childProcess.execSync("git fetch training --tags");
-    childProcess.execSync("npm install --save-dev phantomjs");
+    return exec("git remote add training https://github.com/thefrontside/adv-ember-training-v2.git")
+    .then(asyncCommand("git fetch training"))
+    .then(asyncCommand("git fetch training --tags"))
+    .then(asyncCommand("npm install --save-dev phantomjs"));
   },
 
   afterUninstall: function(options) {
     // This doesn't seem to work yet.
-    childProcess.execSync("git remote remove training");
+    return exec("git remote remove training");
   }
 
 };
