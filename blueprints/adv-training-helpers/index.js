@@ -1,4 +1,4 @@
-var exec = require('child-process-promise');
+var exec = require('child-process-promise').exec;
 
 function asyncCommand(command) {
   return function(){

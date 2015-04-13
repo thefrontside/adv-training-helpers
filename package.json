@@ -35,7 +35,9 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-babel": "^4.0.0"
+    "child-process-promise": "^1.0.2",
+    "ember-cli-babel": "^4.0.0",
+    "rsvp": "^3.0.18"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
