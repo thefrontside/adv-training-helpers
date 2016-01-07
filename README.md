@@ -23,3 +23,10 @@ This README outlines the details of collaborating on this Ember addon.
 * `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+
+## Code of Conduct
+Please note that this project is released with a Contributor Code of
+Conduct. By participating in this project you agree to abide by its
+terms, which can be found in the `CODE_OF_CONDUCT.md` file in this
+repository.
